@@ -1,5 +1,10 @@
 import * as React from 'react';
 
-import { LoginPage } from './pages/login';
+import { AppProvider } from './app-provider';
+import { AppRoutes } from './routes/app-routes';
 
-export const App = () => <LoginPage />;
+export const App = () => (
+  <AppProvider>
+    <AppRoutes />
+  </AppProvider>
+);
