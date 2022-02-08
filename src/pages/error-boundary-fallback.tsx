@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
 import ErrorBoundaryPicture from '../assets/images/error-boundary.svg';
-import { generalConstants } from '../utils/constants';
+import { buttonConstants, generalConstants } from '../utils/constants';
 import { ContentWrapper, InfoContainer, LogoContainer, PageContainer } from './styles';
 
 export const ErrorBoundaryFallback = () => (
@@ -24,7 +24,7 @@ export const ErrorBoundaryFallback = () => (
           size='large'
           endIcon={<RefreshOutlinedIcon />}
         >
-          {generalConstants.RELOAD_THE_PAGE}
+          {buttonConstants.RELOAD_THE_PAGE}
         </Button>
       </ContentWrapper>
     </InfoContainer>

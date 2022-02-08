@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { generalConstants } from '../../utils/constants';
+import { buttonConstants, generalConstants } from '../../utils/constants';
 import { ContentWrapper, InfoContainer, LogoContainer, PageContainer } from '../styles';
 
 export const PageNotFound = () => (
@@ -25,7 +25,7 @@ export const PageNotFound = () => (
           size='large'
           endIcon={<HomeOutlinedIcon />}
         >
-          {generalConstants.TAKE_ME_HOME}
+          {buttonConstants.TAKE_ME_HOME}
         </Button>
       </ContentWrapper>
     </InfoContainer>
