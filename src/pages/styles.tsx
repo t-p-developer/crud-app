@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-import NotFoundImage from '../../assets/images/page-not-found.svg';
+import NotFoundImage from '../assets/images/page-not-found.svg';
 
 export const PageContainer = styled('div')(({ theme }) => ({
   width: '100%',

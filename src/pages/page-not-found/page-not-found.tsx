@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { generalConstants } from '../../utils/constants';
-import { ContentWrapper, InfoContainer, LogoContainer, PageContainer } from './styles';
+import { ContentWrapper, InfoContainer, LogoContainer, PageContainer } from '../styles';
 
 export const PageNotFound = () => (
   <PageContainer>
