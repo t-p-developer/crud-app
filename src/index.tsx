@@ -1,12 +1,12 @@
-import './index.css';
-
-import React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
+import { App } from './App';
 
 ReactDOM.render(
   <React.StrictMode>
+    <CssBaseline />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
