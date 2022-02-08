@@ -1,3 +1,5 @@
+import './style.css';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
