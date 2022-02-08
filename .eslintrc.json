@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "plugins": [ "prettier", "react", "simple-import-sort"],
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 2],
+    "no-param-reassign": ["error", { "props": false }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "import/extensions": ["off"],
+    "max-len": ["error", { "code": 120, "ignoreUrls": true }],
+    "no-use-before-define": ["off"],
+    "import/prefer-default-export": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "import/no-unresolved": ["off"],
+    "import/export": ["off"],
+    "no-nested-ternary": ["off"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+    ]
+  }
+}
