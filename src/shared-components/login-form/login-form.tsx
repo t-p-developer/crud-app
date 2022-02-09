@@ -14,12 +14,13 @@ import { loginFormValidator } from './login-form-validator';
 import { Form, FormInputWrapper, SmallOverlay, SmallOverlayContainer } from './styles';
 
 interface ILoginForm {
-  handleOnSubmit: React.FormEventHandler<HTMLFormElement>;
+  // eslint-disable-next-line no-unused-vars
+  handleOnSubmit: (args: FormInputs) => void;
   controllerState: {
     error: {
       code: number;
       description: string;
-    };
+    } | null;
     isLoading: boolean;
   };
 }
@@ -50,7 +51,6 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
   };
 
   const onSubmit = (formData: FormInputs) => {
-    // @ts-ignore
     handleOnSubmit(formData);
   };
 
@@ -86,7 +86,7 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
               error={hasError(errors, 'email')}
               helperText={hasErrorMessage(errors, 'email')}
               size='small'
-              variant='standard'
+              autoComplete='new-password'
               {...field}
             />
           )}
@@ -108,7 +108,7 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
               error={hasError(errors, 'password')}
               helperText={hasErrorMessage(errors, 'password')}
               size='small'
-              variant='standard'
+              autoComplete='new-password'
               {...field}
             />
           )}

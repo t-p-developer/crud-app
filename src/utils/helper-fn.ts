@@ -14,3 +14,11 @@ export const hasErrorMessage = (errorObject: FieldErrors | undefined, errorField
   }
   return false;
 };
+
+export const normalizeResponse = (response: any) => ({
+  isFetching: response.isFetching,
+  isLoading: response.isLoading,
+  result: response.data?.[response.data?.message?.type] || null,
+  error: response.error?.[response.error?.message?.type] || null,
+  mutateAsync: response.mutateAsync
+});

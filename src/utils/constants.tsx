@@ -9,11 +9,16 @@ export const generalConstants = {
 export const yupConstants = {
   INVALID_EMAIL: 'Invalid email',
   EMAIL_IS_REQUIRED: 'Email is required',
-  PASSWORD_IS_REQUIRED: 'Password is required'
+  PASSWORD_IS_REQUIRED: 'Password is required',
+  PASSWORD_MIN_LENGTH: 'Password must be at least 6 characters'
 };
 
 export const buttonConstants = {
   TAKE_ME_HOME: 'Take me home',
   RELOAD_THE_PAGE: 'Reload the page',
   LOGIN: 'Login'
+};
+
+export const versionConstants = {
+  LOGIN: '/login'
 };
