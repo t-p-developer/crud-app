@@ -6,31 +6,21 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
+import { useLoginContext } from '../../feature-components/login-form-controller/login-form-controller';
 import { buttonConstants, generalConstants } from '../../utils/constants';
 import { hasError, hasErrorMessage } from '../../utils/helper-fn';
 import { ErrorAlert } from '../error-alert/error-alert';
 import { loginFormValidator } from './login-form-validator';
 import { Form, FormInputWrapper } from './styles';
 
-interface ILoginForm {
-  // eslint-disable-next-line no-unused-vars
-  handleOnSubmit: (args: FormInputs) => void;
-  controllerState: {
-    error: {
-      code: number;
-      description: string;
-    } | null;
-    isLoading: boolean;
-  };
-}
-
 type FormInputs = {
   username: string;
   password: string;
 };
 
-export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
-  const { error, isLoading } = controllerState;
+export const LoginForm = () => {
+  // @ts-ignore
+  const { error, isLoading, handleOnSubmit } = useLoginContext();
 
   const {
     handleSubmit,

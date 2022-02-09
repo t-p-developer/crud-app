@@ -6,8 +6,8 @@ import { PageNotFound } from '../pages/page-not-found/page-not-found';
 
 export const ProtectedRoutes = () => (
   <Routes>
-    <Route path='/' element={<Navigate to='/blog' />} />
-    <Route path='blog' element={<OrderTable />} />
+    <Route path='/' element={<Navigate to='/order-table' />} />
+    <Route path='order-table' element={<OrderTable />} />
     <Route path='*' element={<PageNotFound />} />
   </Routes>
 );

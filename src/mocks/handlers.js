@@ -34,6 +34,18 @@ export const handlers = [
       return res(ctx.delay(300), ctx.status(200), ctx.json({ ...response }));
     }
   }),
+  rest.post('/logout', (req, res, ctx) => {
+    sessionStorage.clear();
+    const response = {
+      message: {
+        success: true,
+        description: '',
+        data: [],
+        type: ''
+      }
+    };
+    return res(ctx.delay(300), ctx.status(200), ctx.json({ ...response }));
+  }),
   rest.get('/user', (req, res, ctx) => {
     const isAuthenticated = sessionStorage.getItem('is-authenticated');
     if (!isAuthenticated) {

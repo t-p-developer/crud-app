@@ -1,17 +1,21 @@
 import * as React from 'react';
 
 import { useUser } from '../adapters/user/user';
+import { useLoginContext } from '../feature-components/login-form-controller/login-form-controller';
 import LargeSpinner from '../shared-components/loaders/large-loader';
 import { ProtectedRoutes } from './protected-routes';
 import { PublicRoutes } from './public-routes';
 
 export const AppRoutes = () => {
-  const user = useUser();
+  // @ts-ignore
+  const { data, isLoading } = useLoginContext();
 
-  if (user?.isLoading) {
+  const { isLoading: isUserLoading, data: userData } = useUser();
+
+  if (isLoading || isUserLoading) {
     return <LargeSpinner />;
   }
 
   // @ts-ignore
-  return user?.data?.message?.success ? <ProtectedRoutes /> : <PublicRoutes />;
+  return data || userData ? <ProtectedRoutes /> : <PublicRoutes />;
 };
