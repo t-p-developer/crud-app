@@ -37,17 +37,43 @@ export const handlers = [
   rest.get('/user', (req, res, ctx) => {
     const isAuthenticated = sessionStorage.getItem('is-authenticated');
     if (!isAuthenticated) {
+      const response = {
+        message: {
+          success: false,
+          description: '',
+          data: [],
+          type: 'error'
+        },
+        error: {
+          code: 123,
+          description: 'Something went wrong'
+        }
+      };
       return res(
         ctx.status(403),
         ctx.json({
-          errorMessage: 'Not authorized'
+          ...response
         })
       );
     }
+
+    const response = {
+      message: {
+        success: true,
+        description: '',
+        data: [],
+        type: 'user'
+      },
+      user: {
+        id: 1,
+        username: ''
+      }
+    };
+
     return res(
       ctx.status(200),
       ctx.json({
-        username: 'admin'
+        ...response
       })
     );
   })

@@ -1,6 +1,9 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import { versionConstants } from '../../utils/constants';
-import { postData } from '../api/api';
+import { getData, postData } from '../api/api';
 
-export const usePortingTime = () => useMutation((newData) => postData(`${versionConstants.LOGIN}`, newData));
+export const useLogin = () => useMutation((newData) => postData(`${versionConstants.LOGIN}`, newData));
+
+export const useUser = () =>
+  useQuery(`${versionConstants.USER}`, () => getData(`${versionConstants.USER}`), { retry: false });

@@ -20,5 +20,6 @@ export const buttonConstants = {
 };
 
 export const versionConstants = {
-  LOGIN: '/login'
+  LOGIN: '/login',
+  USER: '/user'
 };

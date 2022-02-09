@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
@@ -11,7 +10,7 @@ import { buttonConstants, generalConstants } from '../../utils/constants';
 import { hasError, hasErrorMessage } from '../../utils/helper-fn';
 import { ErrorAlert } from '../error-alert/error-alert';
 import { loginFormValidator } from './login-form-validator';
-import { Form, FormInputWrapper, SmallOverlay, SmallOverlayContainer } from './styles';
+import { Form, FormInputWrapper } from './styles';
 
 interface ILoginForm {
   // eslint-disable-next-line no-unused-vars
@@ -55,7 +54,7 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
   };
 
   React.useEffect(() => {
-    if (error && error.code !== 401) {
+    if (error && error.code !== 403) {
       setToggleAlertBox(true);
     }
   }, [error]);
@@ -64,13 +63,6 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant='h3'>{generalConstants.LOG_IN}</Typography>
       <FormInputWrapper>
-        {isLoading ? (
-          <SmallOverlayContainer>
-            <SmallOverlay>
-              <CircularProgress />
-            </SmallOverlay>
-          </SmallOverlayContainer>
-        ) : null}
         <Controller
           render={({ field }) => (
             <TextField
@@ -78,6 +70,7 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
               id='username'
               type='email'
               label='Email'
+              disabled={isLoading}
               sx={{
                 width: '100%',
                 mb: '25px',
@@ -101,6 +94,7 @@ export const LoginForm = ({ handleOnSubmit, controllerState }: ILoginForm) => {
               id='password'
               type='password'
               label='Password'
+              disabled={isLoading}
               sx={{
                 mb: '25px',
                 width: '100%'
