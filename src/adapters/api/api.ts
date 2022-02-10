@@ -43,8 +43,12 @@ const api = (method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, variables: 
         }
       },
       (error) => {
-        defaults.fatal.fatalError.apiResponse = error;
-        reject(defaults.fatal);
+        if (error.response) {
+          reject(error.response.data);
+        } else {
+          defaults.fatal.fatalError.apiResponse = error;
+          reject(defaults.fatal);
+        }
       }
     );
   });

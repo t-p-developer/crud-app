@@ -31,7 +31,7 @@ export const handlers = [
           description: 'Something went wrong'
         }
       };
-      return res(ctx.delay(300), ctx.status(200), ctx.json({ ...response }));
+      return res(ctx.delay(300), ctx.status(401), ctx.json({ ...response }));
     }
   }),
   rest.post('/logout', (req, res, ctx) => {

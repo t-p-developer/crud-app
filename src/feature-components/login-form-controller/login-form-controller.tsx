@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { postData } from '../../adapters/api/api';
 import { versionConstants } from '../../utils/constants';
@@ -77,6 +78,8 @@ const LoginContext = React.createContext({});
 LoginContext.displayName = 'LoginContext';
 
 const LoginControllerProvider = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
+
   const [{ isLoading, error, data }, dispatch] = React.useReducer(fetchReducer, initialState);
 
   const handleOnSubmit = async (formValues: { formValues: { userName: string; password: string } }) => {
@@ -86,7 +89,7 @@ const LoginControllerProvider = ({ children }: { children: React.ReactNode }) =>
       dispatch({ type: 'SUCCESS', payload: response });
     } catch (errorResponse) {
       // @ts-ignore
-      dispatch({ type: 'ERROR', payload: errorResponse?.error });
+      dispatch({ type: 'ERROR', payload: errorResponse?.[errorResponse?.message?.type] });
     }
   };
 
@@ -97,6 +100,12 @@ const LoginControllerProvider = ({ children }: { children: React.ReactNode }) =>
       dispatch({ type: 'RESET' });
     } catch (errorResponse) {
       dispatch({ type: 'RESET' });
+    } finally {
+      if (data) {
+        navigate('/');
+      } else {
+        window.location.reload();
+      }
     }
   };
 

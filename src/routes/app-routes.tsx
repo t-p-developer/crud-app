@@ -8,11 +8,11 @@ import { PublicRoutes } from './public-routes';
 
 export const AppRoutes = () => {
   // @ts-ignore
-  const { data, isLoading } = useLoginContext();
+  const { data } = useLoginContext();
 
   const { isLoading: isUserLoading, data: userData } = useUser();
 
-  if (isLoading || isUserLoading) {
+  if (isUserLoading) {
     return <LargeSpinner />;
   }
 

@@ -4,4 +4,7 @@ import { versionConstants } from '../../utils/constants';
 import { getData } from '../api/api';
 
 export const useUser = () =>
-  useQuery(`${versionConstants.USER}`, () => getData(`${versionConstants.USER}`), { retry: false });
+  useQuery(`${versionConstants.USER}`, () => getData(`${versionConstants.USER}`), {
+    retry: false,
+    refetchOnWindowFocus: false
+  });
