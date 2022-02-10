@@ -16,7 +16,7 @@ export const handlers = [
           type: ''
         }
       };
-      return res(ctx.delay(300), ctx.status(200), ctx.json({ ...response }));
+      return res(ctx.delay(1500), ctx.status(200), ctx.json({ ...response }));
     }
     if (username !== 'test@test') {
       const response = {
@@ -31,7 +31,7 @@ export const handlers = [
           description: 'Something went wrong'
         }
       };
-      return res(ctx.delay(300), ctx.status(401), ctx.json({ ...response }));
+      return res(ctx.delay(1500), ctx.status(401), ctx.json({ ...response }));
     }
   }),
   rest.post('/logout', (req, res, ctx) => {
@@ -44,7 +44,7 @@ export const handlers = [
         type: ''
       }
     };
-    return res(ctx.delay(300), ctx.status(200), ctx.json({ ...response }));
+    return res(ctx.delay(1500), ctx.status(200), ctx.json({ ...response }));
   }),
   rest.get('/user', (req, res, ctx) => {
     const isAuthenticated = sessionStorage.getItem('is-authenticated');
@@ -57,11 +57,12 @@ export const handlers = [
           type: 'error'
         },
         error: {
-          code: 123,
-          description: 'Something went wrong'
+          code: 403,
+          description: 'Forbidden'
         }
       };
       return res(
+        ctx.delay(1500),
         ctx.status(403),
         ctx.json({
           ...response
@@ -83,6 +84,7 @@ export const handlers = [
     };
 
     return res(
+      ctx.delay(1500),
       ctx.status(200),
       ctx.json({
         ...response

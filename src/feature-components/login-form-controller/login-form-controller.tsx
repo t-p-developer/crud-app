@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { postData } from '../../adapters/api/api';
+import { getData, postData } from '../../adapters/api/api';
 import { versionConstants } from '../../utils/constants';
 
 interface SuccessResponse {
@@ -90,6 +90,7 @@ const LoginControllerProvider = ({ children }: { children: React.ReactNode }) =>
   const [{ isLoading, error, data }, dispatch] = React.useReducer(fetchReducer, initialState);
 
   const handleOnSubmit = async ({ username, password }: { username: string; password: string }) => {
+    dispatch({ type: 'LOADING' });
     try {
       const response = await postData(`${versionConstants.LOGIN}`, { username, password });
       // @ts-ignore
@@ -104,17 +105,32 @@ const LoginControllerProvider = ({ children }: { children: React.ReactNode }) =>
     dispatch({ type: 'LOADING' });
     try {
       await postData(`${versionConstants.LOGOUT}`);
-      dispatch({ type: 'RESET' });
     } catch (errorResponse) {
       dispatch({ type: 'RESET' });
     } finally {
+      dispatch({ type: 'RESET' });
       if (data) {
         navigate('/');
       } else {
-        window.location.reload();
+        window.location.replace('/');
       }
     }
   };
+
+  React.useEffect(() => {
+    dispatch({ type: 'LOADING' });
+    const checkLogin = async () => {
+      try {
+        const response = await getData(`${versionConstants.USER}`);
+        // @ts-ignore
+        dispatch({ type: 'SUCCESS', payload: response });
+      } catch (errorResponse) {
+        // @ts-ignore
+        dispatch({ type: 'ERROR', payload: errorResponse?.[errorResponse?.message?.type] });
+      }
+    };
+    checkLogin();
+  }, []);
 
   return (
     <LoginContext.Provider

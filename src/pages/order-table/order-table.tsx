@@ -4,10 +4,11 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import * as React from 'react';
 
 import { useLoginContext } from '../../feature-components/login-form-controller/login-form-controller';
+import { LargeSpinner } from '../../shared-components/loaders/large-loader';
 import { PageContainer } from './styles';
 
 export const OrderTable = () => {
-  const { handleLogOut } = useLoginContext();
+  const { handleLogOut, isLoading } = useLoginContext();
 
   const [rows, setRows] = React.useState([]);
 
@@ -24,6 +25,10 @@ export const OrderTable = () => {
       setRows([]);
     };
   }, []);
+
+  if (isLoading) {
+    return <LargeSpinner />;
+  }
 
   return (
     <PageContainer>
