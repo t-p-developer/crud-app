@@ -7,7 +7,6 @@ import { useLoginContext } from '../../feature-components/login-form-controller/
 import { PageContainer } from './styles';
 
 export const OrderTable = () => {
-  // @ts-ignore
   const { handleLogOut } = useLoginContext();
 
   const [rows, setRows] = React.useState([]);

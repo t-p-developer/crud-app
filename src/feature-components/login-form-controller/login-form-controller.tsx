@@ -14,16 +14,8 @@ interface SuccessResponse {
 }
 
 interface Error {
-  message: {
-    success: boolean;
-    description: string;
-    data: Array<string>;
-    type: 'error';
-  };
-  error: {
-    code: number;
-    description: string;
-  };
+  code: number;
+  description: string;
 }
 
 type State = {
@@ -74,7 +66,22 @@ const initialState: State = {
   error: null
 };
 
-const LoginContext = React.createContext({});
+interface IContext {
+  data: SuccessResponse | null;
+  isLoading: boolean;
+  error: Error | null;
+  // eslint-disable-next-line no-unused-vars
+  handleOnSubmit: ({ username, password }: { username: string; password: string }) => Promise<void>;
+  handleLogOut: () => Promise<void>;
+}
+
+const LoginContext = React.createContext<IContext>({
+  data: null,
+  isLoading: false,
+  error: null,
+  handleOnSubmit: (arg: any) => Promise.resolve(arg),
+  handleLogOut: () => Promise.resolve()
+});
 LoginContext.displayName = 'LoginContext';
 
 const LoginControllerProvider = ({ children }: { children: React.ReactNode }) => {
@@ -82,9 +89,9 @@ const LoginControllerProvider = ({ children }: { children: React.ReactNode }) =>
 
   const [{ isLoading, error, data }, dispatch] = React.useReducer(fetchReducer, initialState);
 
-  const handleOnSubmit = async (formValues: { formValues: { userName: string; password: string } }) => {
+  const handleOnSubmit = async ({ username, password }: { username: string; password: string }) => {
     try {
-      const response = await postData(`${versionConstants.LOGIN}`, formValues);
+      const response = await postData(`${versionConstants.LOGIN}`, { username, password });
       // @ts-ignore
       dispatch({ type: 'SUCCESS', payload: response });
     } catch (errorResponse) {

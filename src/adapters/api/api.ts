@@ -17,7 +17,11 @@ const defaults = {
   }
 };
 
-const api = (method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, variables: { [key: string]: any }) => {
+const api = (
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+  url: string,
+  variables: { [key: string]: any } | undefined
+): Promise<any> => {
   const { CancelToken } = axios;
 
   const source = CancelToken.source();
@@ -54,7 +58,5 @@ const api = (method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, variables: 
   });
 };
 
-// @ts-ignore
-export const getData = (...args: any[]) => api('get', ...args);
-// @ts-ignore
-export const postData = (...args: any[]) => api('post', ...args);
+export const getData = (url: string, variables?: { [key: string]: any } | undefined) => api('GET', url, variables);
+export const postData = (url: string, variables?: { [key: string]: any } | undefined) => api('POST', url, variables);

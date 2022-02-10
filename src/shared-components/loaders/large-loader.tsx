@@ -8,5 +8,3 @@ export const LargeSpinner = () => (
     <CircularProgress size={160} />
   </LargeOverlay>
 );
-
-export default LargeSpinner;

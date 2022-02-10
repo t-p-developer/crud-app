@@ -19,7 +19,6 @@ type FormInputs = {
 };
 
 export const LoginForm = () => {
-  // @ts-ignore
   const { error, isLoading, handleOnSubmit } = useLoginContext();
 
   const {
@@ -39,8 +38,8 @@ export const LoginForm = () => {
     setToggleAlertBox(false);
   };
 
-  const onSubmit = (formData: FormInputs) => {
-    handleOnSubmit(formData);
+  const onSubmit = ({ username, password }: FormInputs) => {
+    handleOnSubmit({ username, password });
   };
 
   React.useEffect(() => {
