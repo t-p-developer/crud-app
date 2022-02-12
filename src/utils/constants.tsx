@@ -3,7 +3,11 @@ export const generalConstants = {
   ERROR_BOUNDARY_DESCRIPTION: 'An error occurred while loading the page. Please try again later.',
   PAGE_NOT_FOUND_DESCRIPTION: 'The Page You Are Looking For Could Not Be Found',
   PAGE_NOT_FOUND: 'Sorry !!!',
-  LOG_IN: 'Log In'
+  LOG_IN: 'Log In',
+  CLIENT_NAME: 'Client name: ',
+  ORDER_NUMBER: 'Order number: ',
+  SALES_OF_SOURCE: 'Sales of source: ',
+  SEGMENT: 'Segment: '
 };
 
 export const yupConstants = {

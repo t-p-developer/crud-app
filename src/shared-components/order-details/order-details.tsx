@@ -6,6 +6,7 @@ import * as React from 'react';
 
 // eslint-disable-next-line max-len
 import { useNewOrderContext } from '../../feature-components/new-orders-controller/new-order-controller/new-order-controller';
+import { generalConstants } from '../../utils/constants';
 import { ErrorContent, InfoBox, PageContainer } from './styles';
 
 export const OrderDetails = () => {
@@ -39,10 +40,22 @@ export const OrderDetails = () => {
           </>
         ) : (
           <>
-            <Typography variant='h5'>Client name: {result?.details?.clientName}</Typography>
-            <Typography variant='h6'>Order number: {result?.details?.orderNr}</Typography>
-            <Typography variant='body1'>Sales of source: {result?.details?.salesSource}</Typography>
-            <Typography variant='body2'>Segment: {result?.details?.segment}</Typography>
+            <Typography variant='h5'>
+              {generalConstants.CLIENT_NAME}
+              {result?.details?.clientName}
+            </Typography>
+            <Typography variant='h6'>
+              {generalConstants.ORDER_NUMBER}
+              {result?.details?.orderNr}
+            </Typography>
+            <Typography variant='body1'>
+              {generalConstants.SALES_OF_SOURCE}
+              {result?.details?.salesSource}
+            </Typography>
+            <Typography variant='body2'>
+              {generalConstants.SEGMENT}
+              {result?.details?.segment}
+            </Typography>
           </>
         )}
       </InfoBox>
