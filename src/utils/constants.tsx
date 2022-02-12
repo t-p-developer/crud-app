@@ -14,6 +14,7 @@ export const yupConstants = {
 };
 
 export const buttonConstants = {
+  LOG_OUT: 'Log Out',
   TAKE_ME_HOME: 'Take me home',
   RELOAD_THE_PAGE: 'Reload the page',
   LOGIN: 'Login'

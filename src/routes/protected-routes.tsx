@@ -6,6 +6,7 @@ import { useLoginContext } from '../feature-components/login-form-controller/log
 import { OrderPage } from '../pages/orders-page/order-page/order-page';
 import { OrdersPage } from '../pages/orders-page/orders-page';
 import { PageNotFound } from '../pages/page-not-found/page-not-found';
+import { buttonConstants } from '../utils/constants';
 
 export const ProtectedRoutes = () => {
   const { handleLogOut } = useLoginContext();
@@ -13,12 +14,12 @@ export const ProtectedRoutes = () => {
   return (
     <>
       <Button type='button' sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => handleLogOut()}>
-        Log out
+        {buttonConstants.LOG_OUT}
       </Button>
       <Routes>
-        <Route path='/' element={<Navigate to='/order-table' />} />
-        <Route path='/order-table' element={<OrdersPage />} />
-        <Route path='/order-table/:id' element={<OrderPage />} />
+        <Route path='/' element={<Navigate to='/new-orders' />} />
+        <Route path='/new-orders' element={<OrdersPage />} />
+        <Route path='/new-orders/:id' element={<OrderPage />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>

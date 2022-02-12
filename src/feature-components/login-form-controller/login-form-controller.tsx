@@ -3,32 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getData, postData } from '../../adapters/api/api';
 import { versionConstants } from '../../utils/constants';
-
-interface SuccessResponse {
-  message: {
-    success: boolean;
-    description: '';
-    data: Array<string>;
-    type: '';
-  };
-}
-
-interface Error {
-  code: number;
-  description: string;
-}
-
-type State = {
-  data: SuccessResponse | null;
-  isLoading: boolean;
-  error: Error | null;
-};
-
-type Action =
-  | { type: 'LOADING' }
-  | { type: 'RESET' }
-  | { type: 'SUCCESS'; payload: SuccessResponse }
-  | { type: 'ERROR'; payload: Error };
+import { Action, IContext, State } from './login-form-controller.types';
 
 export const fetchReducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -65,15 +40,6 @@ const initialState: State = {
   isLoading: false,
   error: null
 };
-
-interface IContext {
-  data: SuccessResponse | null;
-  isLoading: boolean;
-  error: Error | null;
-  // eslint-disable-next-line no-unused-vars
-  handleOnSubmit: ({ username, password }: { username: string; password: string }) => Promise<void>;
-  handleLogOut: () => Promise<void>;
-}
 
 const LoginContext = React.createContext<IContext>({
   data: null,

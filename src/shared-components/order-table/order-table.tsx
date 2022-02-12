@@ -67,7 +67,7 @@ export const OrderTable = () => {
           rowsPerPageOptions={[5, 10, 20]}
           pagination
           onRowClick={(params) => {
-            navigate(`/order-table/${params?.row?.orderNr}`);
+            navigate(`/new-orders/${params?.row?.orderNr}`);
           }}
         />
       </div>
