@@ -12,5 +12,5 @@ export const AppRoutes = () => {
     return <LargeSpinner />;
   }
 
-  return data ? <ProtectedRoutes /> : <PublicRoutes />;
+  return data && !isLoading ? <ProtectedRoutes /> : <PublicRoutes />;
 };

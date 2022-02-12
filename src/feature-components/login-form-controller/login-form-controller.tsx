@@ -37,13 +37,13 @@ export const fetchReducer = (state: State, action: Action): State => {
 
 const initialState: State = {
   data: null,
-  isLoading: false,
+  isLoading: true,
   error: null
 };
 
 const LoginContext = React.createContext<IContext>({
   data: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
   handleOnSubmit: (arg: any) => Promise.resolve(arg),
   handleLogOut: () => Promise.resolve()
